@@ -1,0 +1,384 @@
+fileFormatVersion: 2
+guid: c949406cc2bc13d46a4469920838eae8
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 368712592318130064
+    second: temp_character_run_0
+  - first:
+      213: -5447913185833035620
+    second: temp_character_run_1
+  - first:
+      213: 5380189521372745572
+    second: temp_character_run_2
+  - first:
+      213: -5859766889873239744
+    second: temp_character_run_3
+  - first:
+      213: -4373534954319879758
+    second: temp_character_run_4
+  - first:
+      213: -7710033429764704471
+    second: temp_character_run_5
+  - first:
+      213: -6461818036735593494
+    second: temp_character_run_6
+  - first:
+      213: 2290208180254264799
+    second: temp_character_run_7
+  - first:
+      213: -5860406007015661295
+    second: temp_character_run_8
+  - first:
+      213: 7308671413632766755
+    second: temp_character_run_9
+  - first:
+      213: 6396972828335452911
+    second: temp_character_run_10
+  - first:
+      213: 282478681473697895
+    second: temp_character_run_11
+  - first:
+      213: 9129633909858575233
+    second: temp_character_run_12
+  - first:
+      213: -4050259311585516340
+    second: temp_character_run_13
+  - first:
+      213: -5624653061193013205
+    second: temp_character_run_14
+  - first:
+      213: -3036739092751692125
+    second: temp_character_run_15
+  - first:
+      213: 8363176778839069614
+    second: temp_character_run_16
+  - first:
+      213: 7177102277414279936
+    second: temp_character_run_17
+  - first:
+      213: 856230235248250135
+    second: temp_character_run_18
+  - first:
+      213: -8218787150528938938
+    second: temp_character_run_19
+  - first:
+      213: -7193493508590810165
+    second: temp_character_run_20
+  - first:
+      213: -2267391684418431264
+    second: temp_character_run_21
+  - first:
+      213: 8604297466606775760
+    second: temp_character_run_22
+  - first:
+      213: -8987139648825697767
+    second: temp_character_run_23
+  - first:
+      213: 1752845213420439466
+    second: temp_character_run_24
+  - first:
+      213: -1732090351409112517
+    second: temp_character_run_25
+  - first:
+      213: -2926146431393416357
+    second: temp_character_run_26
+  - first:
+      213: -950960606486572372
+    second: temp_character_run_27
+  - first:
+      213: -6536653532379594410
+    second: temp_character_run_28
+  - first:
+      213: 6467959994250351637
+    second: temp_character_run_29
+  - first:
+      213: 5123780858627468833
+    second: temp_character_run_30
+  - first:
+      213: 1500752233621141348
+    second: temp_character_run_31
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: temp_character_run_0
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 24
+        width: 15
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 097e551362eed1500800000000000000
+      internalID: 368712592318130064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: temp_character_run_1
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 23
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c98514f52df1564b0800000000000000
+      internalID: -5447913185833035620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: temp_character_run_3
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 25
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 041928e5f0dedaea0800000000000000
+      internalID: -5859766889873239744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: temp_character_run_4
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 27
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b1620b81251e43c0800000000000000
+      internalID: -4373534954319879758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: temp_character_run_5
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 25
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 927fc74f175700590800000000000000
+      internalID: -7710033429764704471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: temp_character_run_6
+      rect:
+        serializedVersion: 2
+        x: 519
+        y: 25
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae3b9255bb20356a0800000000000000
+      internalID: -6461818036735593494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: temp_character_run_7
+      rect:
+        serializedVersion: 2
+        x: 614
+        y: 25
+        width: 17
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fddcfb5b43478cf10800000000000000
+      internalID: 2290208180254264799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: temp_character_run_8
+      rect:
+        serializedVersion: 2
+        x: 710
+        y: 27
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 111244059c7abaea0800000000000000
+      internalID: -5860406007015661295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

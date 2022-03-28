@@ -1,0 +1,516 @@
+fileFormatVersion: 2
+guid: c9a93f76f0065ee47a5dac2a265fd4ba
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7960538905847613305
+    second: temp_character_sword_0
+  - first:
+      213: -4712476174626658953
+    second: temp_character_sword_1
+  - first:
+      213: -2953035401097787414
+    second: temp_character_sword_2
+  - first:
+      213: 3042419872665419478
+    second: temp_character_sword_3
+  - first:
+      213: 8575768780163987643
+    second: temp_character_sword_4
+  - first:
+      213: 6712477941578765588
+    second: temp_character_sword_5
+  - first:
+      213: -2007777607480224093
+    second: temp_character_sword_6
+  - first:
+      213: -3899750745235425333
+    second: temp_character_sword_8
+  - first:
+      213: 4273380783356174481
+    second: temp_character_sword_9
+  - first:
+      213: -6408401180643265452
+    second: temp_character_sword_10
+  - first:
+      213: 152349327253177257
+    second: temp_character_sword_7
+  - first:
+      213: -396358790122262616
+    second: temp_character_sword_11
+  - first:
+      213: -8865648716876905529
+    second: temp_character_sword_12
+  - first:
+      213: -6211947912917657919
+    second: temp_character_sword_13
+  - first:
+      213: -3636299470722128767
+    second: temp_character_sword_14
+  - first:
+      213: 6737418221864434735
+    second: temp_character_sword_15
+  - first:
+      213: 7380085037225109074
+    second: temp_character_sword_16
+  - first:
+      213: 8262689091710267282
+    second: temp_character_sword_17
+  - first:
+      213: -8556562515035525146
+    second: temp_character_sword_18
+  - first:
+      213: 9032264400341885071
+    second: temp_character_sword_19
+  - first:
+      213: 148204105704253896
+    second: temp_character_sword_20
+  - first:
+      213: -773958234585265481
+    second: temp_character_sword_21
+  - first:
+      213: -7462793543035714296
+    second: temp_character_sword_22
+  - first:
+      213: -7296367635049737488
+    second: temp_character_sword_23
+  - first:
+      213: 7478018067197780589
+    second: temp_character_sword_24
+  - first:
+      213: 3255392935634140277
+    second: temp_character_sword_25
+  - first:
+      213: -7601233335295648189
+    second: temp_character_sword_26
+  - first:
+      213: -6158377772691749548
+    second: temp_character_sword_27
+  - first:
+      213: 2276650675070308754
+    second: temp_character_sword_28
+  - first:
+      213: 7802020151918192821
+    second: temp_character_sword_29
+  - first:
+      213: 8378820342374033275
+    second: temp_character_sword_30
+  - first:
+      213: 8685494745529387474
+    second: temp_character_sword_31
+  - first:
+      213: 2407604243366488795
+    second: temp_character_sword_32
+  - first:
+      213: -5109600333898444066
+    second: temp_character_sword_33
+  - first:
+      213: 3891909413878329822
+    second: temp_character_sword_34
+  - first:
+      213: 1483358953558168416
+    second: temp_character_sword_35
+  - first:
+      213: -8855771758101505689
+    second: temp_character_sword_36
+  - first:
+      213: 8203071840578807451
+    second: temp_character_sword_37
+  - first:
+      213: 4864771734215164910
+    second: temp_character_sword_38
+  - first:
+      213: 5495536309166776975
+    second: temp_character_sword_39
+  - first:
+      213: -5467691456346139675
+    second: temp_character_sword_40
+  - first:
+      213: 3014066018961331068
+    second: temp_character_sword_41
+  - first:
+      213: -8780227006558832126
+    second: temp_character_sword_42
+  - first:
+      213: -7962135071866015500
+    second: temp_character_sword_43
+  - first:
+      213: -7885169733839140933
+    second: temp_character_sword_44
+  - first:
+      213: -5232387223940920206
+    second: temp_character_sword_45
+  - first:
+      213: 3614388373696267
+    second: temp_character_sword_46
+  - first:
+      213: -8488601897894788887
+    second: temp_character_sword_47
+  - first:
+      213: -3062728758598533025
+    second: temp_character_sword_48
+  - first:
+      213: -4966869460754799369
+    second: temp_character_sword_49
+  - first:
+      213: 8571656768861196774
+    second: temp_character_sword_50
+  - first:
+      213: 1284140086673854451
+    second: temp_character_sword_51
+  - first:
+      213: 1125782990359228426
+    second: temp_character_sword_52
+  - first:
+      213: -9037713405484828516
+    second: temp_character_sword_53
+  - first:
+      213: -328224300207166654
+    second: temp_character_sword_54
+  - first:
+      213: 7317668444559895051
+    second: temp_character_sword_55
+  - first:
+      213: -7005053595912576533
+    second: temp_character_sword_56
+  - first:
+      213: -5153189718546483186
+    second: temp_character_sword_57
+  - first:
+      213: 8795758456251984586
+    second: temp_character_sword_58
+  - first:
+      213: 6357103860685251181
+    second: temp_character_sword_59
+  - first:
+      213: -7197516875896472865
+    second: temp_character_sword_60
+  - first:
+      213: 4215479343267367597
+    second: temp_character_sword_61
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: temp_character_sword_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 96
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97749b745f3897e60800000000000000
+      internalID: 7960538905847613305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: temp_character_sword_1
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 96
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 775e2ee03ebe99eb0800000000000000
+      internalID: -4712476174626658953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: temp_character_sword_2
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 96
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae7c964d2f5b407d0800000000000000
+      internalID: -2953035401097787414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: temp_character_sword_3
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 96
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6debfc731c8d83a20800000000000000
+      internalID: 3042419872665419478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: temp_character_sword_4
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 96
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb83f89e440430770800000000000000
+      internalID: 8575768780163987643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: temp_character_sword_5
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 96
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4159276af13872d50800000000000000
+      internalID: 6712477941578765588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: temp_character_sword_6
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 96
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a6582657e0f224e0800000000000000
+      internalID: -2007777607480224093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: temp_character_sword_8
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 96
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc77da5eb5d41e9c0800000000000000
+      internalID: -3899750745235425333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: temp_character_sword_9
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 0
+        width: 96
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 190eced5e291e4b30800000000000000
+      internalID: 4273380783356174481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: temp_character_sword_7
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 0
+        width: 96
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a302bce7e04d1200800000000000000
+      internalID: 152349327253177257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
