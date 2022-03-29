@@ -7,15 +7,10 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
 
     public Rigidbody2D rb;
-    private float movementHorizontal;
-    private float movementVertical;
-
+    private float movementHorizontal, movementVertical;
     private float walkSpeed = 150f;
     private float runSpeed = 170f;
-    private bool isRunning;
-    private bool isRolling;
-    private bool swordAttacking;
-    public bool isFrozen;
+    private bool isRunning, isRolling, swordAttacking, isFrozen;
 
     // Start is called before the first frame update
     void Start()

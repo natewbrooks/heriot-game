@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private int vigor;
+    [SerializeField] private int vigor; // baby private variable
     private bool deathCall;
-    public int Vigor {
+    public int Vigor {  // called vigor because the class is Health
         get {return vigor;} 
         set {vigor = value;}
     }
 
+    // ability to take damage and knockback if this gameobject has a rigidbody, default no knockback
     public void TakeDamage(float dmg, float knockback = 0, GameObject obj = null) {
         //Debug.Log("New Health: " + vigor + " - " + (int)dmg + " = " + (vigor-(int)dmg));
         vigor -= (int) dmg;
@@ -23,6 +24,7 @@ public class Health : MonoBehaviour
 
     void Update() {
         if(vigor <= 0) {
+            // send death call only once
             if(!deathCall) {
                 gameObject.SendMessage("OnDeath");
                 deathCall = true;

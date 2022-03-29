@@ -25,6 +25,6 @@ public class Tree : MonoBehaviour
     }
 
     private void TakeHit() {
-        
+        // play hit animation with leaves falling
     }
 }

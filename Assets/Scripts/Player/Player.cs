@@ -32,5 +32,7 @@ public class Player : MonoBehaviour
     private void OnDeath() {
         controller.isFrozen = true;
         animator.SetTrigger("Got Killed?");
+        // open the menu or do something
+
     }
 }
