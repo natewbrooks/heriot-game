@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     private void Start() {
         health = GetComponent<Health>();
         controller = GetComponent<PlayerController>();
-        animator = GetComponent<Animator>();
+        animator = transform.GetChild(0).GetComponent<Animator>();
     }
     
     private void Update() {

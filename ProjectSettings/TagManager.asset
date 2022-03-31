@@ -6,6 +6,7 @@ TagManager:
   tags:
   - GameEngine
   - NPC
+  - Enemy
   layers:
   - Default
   - TransparentFX

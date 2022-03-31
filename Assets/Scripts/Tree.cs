@@ -12,9 +12,9 @@ public class Tree : MonoBehaviour
     private void Start() {
         health = GetComponent<Health>();
     }
-
+    
     private void OnDeath() {
-        Instantiate(stump, new Vector3(transform.GetChild(0).transform.position.x, transform.GetChild(0).transform.position.y, transform.GetChild(0).transform.position.z), transform.GetChild(0).transform.rotation);
+        Instantiate(stump, transform.GetChild(0).position, transform.GetChild(0).transform.rotation);
         for (int i = 0; i < dropAmount; i++)
         {
            GameObject nextDrop = Instantiate(drop, transform.GetChild(0).transform.position, transform.GetChild(0).transform.rotation);

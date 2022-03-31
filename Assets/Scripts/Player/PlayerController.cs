@@ -7,15 +7,16 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
 
     public Rigidbody2D rb;
-    private float movementHorizontal, movementVertical;
+    private Vector2 movement;
     private float walkSpeed = 150f;
     private float runSpeed = 170f;
-    private bool isRunning, isRolling, swordAttacking, isFrozen;
+    private bool isRunning, isRolling, swordAttacking;
+    public bool isFrozen;
 
     // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponent<Animator>();
+        animator = transform.GetChild(0).GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -23,8 +24,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         if(!isFrozen) {
-            movementHorizontal = Input.GetAxisRaw("Horizontal");
-            movementVertical = Input.GetAxisRaw("Vertical"); 
+            movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
             if(Input.GetKey(KeyCode.Space)) {
                 isRunning = true;
@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
                 swordAttacking = false;
             }
             
-
+            
             AnimationHandler();
         } else {
             rb.velocity = Vector2.zero;
@@ -52,27 +52,24 @@ public class PlayerController : MonoBehaviour
     }
 
     void FixedUpdate() {
-        if(!isFrozen) {
             if(isRunning) {
-                rb.velocity = new Vector2(movementHorizontal * runSpeed * Time.deltaTime, movementVertical * runSpeed * Time.deltaTime);
+                rb.velocity = new Vector2(movement.x * runSpeed * Time.deltaTime, movement.y * runSpeed * Time.deltaTime);
             } else {
-                rb.velocity = new Vector2(movementHorizontal * walkSpeed * Time.deltaTime, movementVertical * walkSpeed * Time.deltaTime);
+                rb.velocity = new Vector2(movement.x * walkSpeed * Time.deltaTime, movement.y * walkSpeed * Time.deltaTime);
             }
-        }
-        
     }
 
     void AnimationHandler() {
 
-        if(movementHorizontal < 0) {
-            transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
-        } else if (movementHorizontal > 0) {
-            transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
+        if(movement.x < 0) {
+            transform.GetChild(0).localScale = new Vector3(-1, transform.GetChild(0).localScale.y, transform.GetChild(0).localScale.z);
+        } else if (movement.x > 0) {
+            transform.GetChild(0).localScale = new Vector3(1, transform.GetChild(0).localScale.y, transform.GetChild(0).localScale.z);
         } else {
-            transform.localScale = transform.localScale;
+            transform.GetChild(0).localScale = transform.GetChild(0).localScale;
         }
 
-        if(movementHorizontal != 0 || movementVertical != 0) {
+        if(movement.x != 0 || movement.y != 0) {
             animator.SetFloat("Movement Input", 1);
         } else {
             animator.SetFloat("Movement Input", 0);

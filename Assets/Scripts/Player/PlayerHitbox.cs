@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random=UnityEngine.Random;
 
 public class PlayerHitbox : MonoBehaviour
 {
@@ -8,13 +10,16 @@ public class PlayerHitbox : MonoBehaviour
     Player player;
     [SerializeField] private float damage; // damage the player deals for sword atleast
 
+    private void Start() {
+        player = transform.root.GetComponent<Player>();
+    }
     private void OnTriggerEnter2D(Collider2D other) {
-        colliderHealth = other.gameObject.GetComponent<Health>();
-        player = transform.parent.gameObject.GetComponent<Player>();
+        
+            colliderHealth = other.GetComponent<Health>();
 
-        if(colliderHealth != null) {    // if the collider has health, deal damage to it
-            colliderHealth.TakeDamage(Random.Range(player.Damage-2f, player.Damage+2f), player.Knockback, player.gameObject);
-        }
+            if(colliderHealth != null) {
+                colliderHealth.TakeDamage(Random.Range(player.Damage-2f, player.Damage+2f), player.Knockback, player.gameObject);
+            }
     }
 
     private void OnTriggerExit2D(Collider2D other) {

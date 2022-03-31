@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    Rigidbody2D rb;
+
+    void Start() {
+        rb = transform.GetChild(0).GetComponent<Rigidbody2D>();
+    }
     private void OnCollisionEnter2D(Collision2D other) {
         Health enemyHealth = other.gameObject.GetComponent<Health>();
         // temp damage strategy for enemy
@@ -17,5 +22,6 @@ public class Enemy : MonoBehaviour
     private void OnDeath() {
         // send trigger to animator for death
         // animator handles destroying gameobj
+        Destroy(gameObject);
     }
 }
