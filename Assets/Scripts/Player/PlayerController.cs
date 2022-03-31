@@ -8,8 +8,8 @@ public class PlayerController : MonoBehaviour
 
     public Rigidbody2D rb;
     private Vector2 movement;
-    private float walkSpeed = 150f;
-    private float runSpeed = 170f;
+    private float walkSpeed = 3f;
+    private float runSpeed = 5f;
     private bool isRunning, isRolling, swordAttacking;
     public bool isFrozen;
 
@@ -23,9 +23,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!isFrozen) {
-            movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-
+        if(!isFrozen) {    
             if(Input.GetKey(KeyCode.Space)) {
                 isRunning = true;
             } else {
@@ -52,10 +50,12 @@ public class PlayerController : MonoBehaviour
     }
 
     void FixedUpdate() {
+            movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+
             if(isRunning) {
-                rb.velocity = new Vector2(movement.x * runSpeed * Time.deltaTime, movement.y * runSpeed * Time.deltaTime);
+                rb.MovePosition(rb.position + movement * runSpeed * Time.fixedDeltaTime);
             } else {
-                rb.velocity = new Vector2(movement.x * walkSpeed * Time.deltaTime, movement.y * walkSpeed * Time.deltaTime);
+                rb.MovePosition(rb.position + movement * walkSpeed * Time.fixedDeltaTime);
             }
     }
 
