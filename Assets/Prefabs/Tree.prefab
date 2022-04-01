@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8249006249110759495}
   - component: {fileID: 3850918003132313354}
   - component: {fileID: 309582959704901630}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,6 +64,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vigor: 5
   maxVigor: 10
+  kinetic: 0
 --- !u!70 &309582959704901630
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -90,7 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7379054371931169153}
   - component: {fileID: 8959897069212196453}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,10 +170,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2614026880427981789}
     m_Modifications:
+    - target: {fileID: 3043154234740283653, guid: 288a38f6268810e4db57d1a285108c97, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4246480185311536577, guid: 288a38f6268810e4db57d1a285108c97, type: 3}
+      propertyPath: isStatic
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4246480185311536577, guid: 288a38f6268810e4db57d1a285108c97, type: 3}
       propertyPath: objHealth
       value: 
       objectReference: {fileID: 3850918003132313354}
+    - target: {fileID: 4246480185311536580, guid: 288a38f6268810e4db57d1a285108c97, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4246480185311536582, guid: 288a38f6268810e4db57d1a285108c97, type: 3}
       propertyPath: m_Value
       value: 50
@@ -208,6 +221,10 @@ PrefabInstance:
     - target: {fileID: 4246480185388865483, guid: 288a38f6268810e4db57d1a285108c97, type: 3}
       propertyPath: m_Name
       value: Healthbar
+      objectReference: {fileID: 0}
+    - target: {fileID: 4246480185388865483, guid: 288a38f6268810e4db57d1a285108c97, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4246480185388865483, guid: 288a38f6268810e4db57d1a285108c97, type: 3}
       propertyPath: m_IsActive
@@ -317,6 +334,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4246480185766103454, guid: 288a38f6268810e4db57d1a285108c97, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4246480185830477988, guid: 288a38f6268810e4db57d1a285108c97, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
@@ -324,6 +345,10 @@ PrefabInstance:
     - target: {fileID: 4246480185830477988, guid: 288a38f6268810e4db57d1a285108c97, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0.0010375977
+      objectReference: {fileID: 0}
+    - target: {fileID: 4246480185830477989, guid: 288a38f6268810e4db57d1a285108c97, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6784492901945135565, guid: 288a38f6268810e4db57d1a285108c97, type: 3}
       propertyPath: m_SizeDelta.x

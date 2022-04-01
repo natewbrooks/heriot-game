@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 
 public class Health : MonoBehaviour
@@ -9,7 +10,8 @@ public class Health : MonoBehaviour
     private GameObject healthbar;
     [SerializeField] private int vigor = 5; // baby private variable
     [SerializeField] private int maxVigor = 5;
-    private bool deathCall, justHit;
+    [SerializeField] private bool kinetic;
+    private bool deathCall, justHit, stopInvokeCalled, immune;
     public int MaxVigor {  // called vigor because the class is Health
         get {return maxVigor;} 
     }
@@ -17,62 +19,68 @@ public class Health : MonoBehaviour
         get {return vigor;} 
         set {vigor = value;}
     }
+    public bool Kinetic {
+        get {return kinetic;} 
+    }
 
     private void Start() {
-        try {
-            healthbar = transform.Find("Healthbar").gameObject;
-        } catch (Exception e) {
-            healthbar = null;
-        }
+        healthbar = transform.Find("Healthbar").gameObject;
         vigor = maxVigor;
     }
 
     // ability to take damage and knockback if this gameobject has a rigidbody, default no knockback
-    public void TakeDamage(float dmg, float knockback = 0, GameObject obj = null) {
+    public void TakeDamage(float dmg, float knockback = 1, GameObject dealer = null) {
         //Debug.Log("New Health: " + vigor + " - " + (int)dmg + " = " + (vigor-(int)dmg));
-        vigor -= (int) dmg;
-        justHit = true;
-        CancelInvoke("TurnOffJustHit");
-        gameObject.SendMessage("TakeHit");
+        if(!immune) {
+            immune = true;
+            vigor -= (int) dmg;
+            justHit = true;
+            stopInvokeCalled = false;
+            CancelInvoke("TurnOffHealthbar");
+            gameObject.SendMessage("TakeHit");
 
-        if(knockback > 0 && obj != null && GetComponent<Rigidbody2D>() != null) {
-            StartCoroutine(Knockback(knockback, obj));
+            if(knockback > 0 && kinetic && dealer != null) {
+                StartCoroutine(Knockback(knockback, dealer));
+            }
+            immune = false;
         }
+        
     }
 
     void Update() {
         if(vigor <= 0) {
             // send death call only once
-            if(!deathCall) {
+            if(!deathCall) {    
                 gameObject.SendMessage("OnDeath");
                 deathCall = true;
             }
         }
 
-        if(healthbar != null) {
-            if(justHit) {
-                healthbar.SetActive(true);
+        if(healthbar != null && justHit) {
+            justHit = false;
+            healthbar.SetActive(true); 
+            if(!stopInvokeCalled) {
                 Invoke("TurnOffHealthbar", 3f);
-            } else {
-                healthbar.SetActive(false);
+                stopInvokeCalled = true;
             }
+            
         }
     }
 
-    IEnumerator Knockback(float knockbackPower, GameObject obj) {
-        float timer = 0;
+    IEnumerator Knockback(float knockbackPower, GameObject dealer) {
 
-        while(3 > timer) {
-            timer += Time.deltaTime;
-            Vector2 direction = (obj.transform.position - transform.position).normalized;
-            transform.GetComponent<Rigidbody2D>().AddForce(-direction * knockbackPower);
-        }
+        Vector3 difference = transform.position - dealer.transform.position;
+        difference = difference.normalized * knockbackPower;
+        
+        transform.DOMove(transform.position + difference, .75f);
+        GetComponent<Rigidbody2D>().velocity = Vector3.zero;
 
         yield return 0;
     }
 
 
     void TurnOffHealthbar() {
-        justHit = false;
+        healthbar.SetActive(false);
+        stopInvokeCalled = false;
     }
 }

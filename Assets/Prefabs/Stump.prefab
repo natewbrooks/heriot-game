@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4901414730181032252}
   - component: {fileID: 7245345051477676514}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sprite
   m_TagString: NPC
   m_Icon: {fileID: 0}
@@ -92,9 +92,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3825783408710884860}
   - component: {fileID: 1494702968986880623}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Stump
-  m_TagString: NPC
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

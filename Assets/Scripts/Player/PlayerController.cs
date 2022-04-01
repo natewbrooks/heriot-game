@@ -5,19 +5,15 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Animator animator;
-
-    public Rigidbody2D rb;
     private Vector2 movement;
-    private float walkSpeed = 3f;
-    private float runSpeed = 5f;
-    private bool isRunning, isRolling, swordAttacking;
+    private float walkSpeed = 3f, blockSpeed = 1f, runSpeed = 4f;
+    private bool isRunning, isRolling, swordAttacking, isBlocking;
     public bool isFrozen;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = transform.GetChild(0).GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -36,31 +32,38 @@ public class PlayerController : MonoBehaviour
                 isRolling = false;
             }
 
-            if(Input.GetKeyDown(KeyCode.Z) && !swordAttacking) {
+            // attacking
+            if(Input.GetMouseButtonDown(0) && !swordAttacking) {
                 swordAttacking = true;
+                isBlocking = false;
             } else {
                 swordAttacking = false;
             }
+
+            // blocking
+            if(Input.GetMouseButton(1)) {
+                isBlocking = true;
+                isRunning = false;
+                Debug.Log(isBlocking);
+            } else {
+                isBlocking = false;
+            }
             
+
             
             AnimationHandler();
-        } else {
-            rb.velocity = Vector2.zero;
         }
     }
 
     void FixedUpdate() {
-            movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
-
-            if(isRunning) {
-                rb.MovePosition(rb.position + movement * runSpeed * Time.fixedDeltaTime);
-            } else {
-                rb.MovePosition(rb.position + movement * walkSpeed * Time.fixedDeltaTime);
-            }
+        if(!isFrozen) {
+            Move();         
+        }
     }
 
     void AnimationHandler() {
-
+        
+        // flip character and children
         if(movement.x < 0) {
             transform.GetChild(0).localScale = new Vector3(-1, transform.GetChild(0).localScale.y, transform.GetChild(0).localScale.z);
         } else if (movement.x > 0) {
@@ -79,6 +82,21 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("Is Rolling", isRolling);
         animator.SetBool("Is Sword Attacking", swordAttacking);
 
+    }
+    
+
+    void Move() {
+        movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+            
+        if(isRunning) {
+            transform.position = new Vector2(transform.position.x + movement.x * runSpeed * Time.fixedDeltaTime, transform.position.y + movement.y * runSpeed * Time.fixedDeltaTime);
+        } else if (isBlocking) {
+            transform.position = new Vector2(transform.position.x + movement.x * blockSpeed * Time.fixedDeltaTime, transform.position.y + movement.y * runSpeed * Time.fixedDeltaTime);
+
+        } else {
+            transform.position = new Vector2(transform.position.x + movement.x * walkSpeed * Time.fixedDeltaTime, transform.position.y + movement.y * runSpeed * Time.fixedDeltaTime);
+
+        }
     }
 
 }
