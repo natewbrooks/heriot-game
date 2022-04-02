@@ -2,17 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameEngine : MonoBehaviour
+public class GameEngine : Singleton<GameEngine>
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public Player GetPlayer { get { return GameObject.FindWithTag("Player").GetComponent<Player>(); } }
 }

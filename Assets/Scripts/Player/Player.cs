@@ -4,33 +4,29 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    Animator animator;
-    Health health;
-    PlayerController controller;
-    [SerializeField] private int damage, knockback;
+    private Animator animator;
+    private Health health;
+    private PlayerController controller;
 
-    public int Damage { 
-        get { return damage; } 
-    }
-    public int Knockback { 
-        get { return knockback; } 
-    }
+    [SerializeField] private int _damage, _knockback;
+    [SerializeField] private bool _frozen;
+
+    // accessors
+    public int Damage { get {return _damage; } }
+    public int Knockback { get { return _knockback; } }
+    public bool Frozen { get { return _frozen; } }
 
     private void Start() {
         health = GetComponent<Health>();
         controller = GetComponent<PlayerController>();
-        animator = transform.GetChild(0).GetComponent<Animator>();
-    }
-    
-    private void Update() {
-        
+        animator = transform.GetComponentInChildren<Animator>();
     }
 
     private void TakeHit() {
         animator.SetTrigger("Got Hit?");
     }
     private void OnDeath() {
-        controller.isFrozen = true;
+        _frozen = true;
         animator.SetTrigger("Got Killed?");
         // open the menu or do something
 

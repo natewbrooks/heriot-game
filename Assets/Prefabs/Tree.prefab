@@ -62,9 +62,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20d5f3a43c039c641adbd6bf4894e075, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vigor: 5
-  maxVigor: 10
-  kinetic: 0
+  _vigor: 5
+  _maxVigor: 15
+  _takeKnockback: 0
+  _immune: 0
 --- !u!70 &309582959704901630
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

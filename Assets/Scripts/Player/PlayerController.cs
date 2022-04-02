@@ -5,21 +5,28 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Animator animator;
+    private Health health;
+    private Player player;
+    private Equipment equipment;
+
     private Vector2 movement;
     private float walkSpeed = 3f, blockSpeed = 1f, runSpeed = 4f;
-    private bool isRunning, isRolling, swordAttacking, isBlocking;
-    public bool isFrozen;
+    private bool isRunning, isBlocking, canHit = true;
+    private float attackRate = 4f, nextAttackTime = 0f;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = transform.GetChild(0).GetComponent<Animator>();
+        health = GetComponent<Health>();
+        player = GetComponent<Player>();
+        equipment = GetComponent<Equipment>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!isFrozen) {    
+        if(!player.Frozen) {    
             if(Input.GetKey(KeyCode.Space)) {
                 isRunning = true;
             } else {
@@ -27,36 +34,39 @@ public class PlayerController : MonoBehaviour
             }
 
             if(Input.GetKeyDown(KeyCode.LeftAlt)) {
-                isRolling = true;
-            } else {
-                isRolling = false;
+                animator.SetTrigger("Roll");
             }
 
             // attacking
-            if(Input.GetMouseButtonDown(0) && !swordAttacking) {
-                swordAttacking = true;
-                isBlocking = false;
-            } else {
-                swordAttacking = false;
+            if(Time.time >= nextAttackTime && canHit) {
+                if(Input.GetMouseButtonDown(0)) {
+                    animator.SetTrigger("Sword Attack");
+                    nextAttackTime = Time.time + 1f / attackRate;
+                }
             }
 
             // blocking
-            if(Input.GetMouseButton(1)) {
+            if(Input.GetMouseButton(1) && (equipment.LeftHand == Equipment.Arsenal.Shield)) {
                 isBlocking = true;
+                health.TakeKnockback = false;
+                health.Immune = true;
+                canHit = false;
+                transform.GetChild(0).GetChild(1).gameObject.SetActive(true); // temporary shield, need to make animation like sword
                 isRunning = false;
-                Debug.Log(isBlocking);
             } else {
                 isBlocking = false;
+                health.TakeKnockback = true;
+                health.Immune = false;
+                canHit = true;
+                transform.GetChild(0).GetChild(1).gameObject.SetActive(false);
             }
-            
-
             
             AnimationHandler();
         }
     }
 
     void FixedUpdate() {
-        if(!isFrozen) {
+        if(!player.Frozen) {
             Move();         
         }
     }
@@ -79,8 +89,6 @@ public class PlayerController : MonoBehaviour
         }
 
         animator.SetBool("Is Running", isRunning);
-        animator.SetBool("Is Rolling", isRolling);
-        animator.SetBool("Is Sword Attacking", swordAttacking);
 
     }
     
@@ -91,10 +99,10 @@ public class PlayerController : MonoBehaviour
         if(isRunning) {
             transform.position = new Vector2(transform.position.x + movement.x * runSpeed * Time.fixedDeltaTime, transform.position.y + movement.y * runSpeed * Time.fixedDeltaTime);
         } else if (isBlocking) {
-            transform.position = new Vector2(transform.position.x + movement.x * blockSpeed * Time.fixedDeltaTime, transform.position.y + movement.y * runSpeed * Time.fixedDeltaTime);
+            transform.position = new Vector2(transform.position.x + movement.x * blockSpeed * Time.fixedDeltaTime, transform.position.y + movement.y * blockSpeed * Time.fixedDeltaTime);
 
         } else {
-            transform.position = new Vector2(transform.position.x + movement.x * walkSpeed * Time.fixedDeltaTime, transform.position.y + movement.y * runSpeed * Time.fixedDeltaTime);
+            transform.position = new Vector2(transform.position.x + movement.x * walkSpeed * Time.fixedDeltaTime, transform.position.y + movement.y * walkSpeed * Time.fixedDeltaTime);
 
         }
     }

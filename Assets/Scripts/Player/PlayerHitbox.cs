@@ -6,8 +6,8 @@ using Random=UnityEngine.Random;
 
 public class PlayerHitbox : MonoBehaviour
 {
-    Health colliderHealth;
-    Player player;
+    private Health colliderHealth;
+    private Player player;
 
     private void Start() {
         player = transform.root.GetComponent<Player>();
