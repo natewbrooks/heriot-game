@@ -29,6 +29,5 @@ public class Player : MonoBehaviour
         _frozen = true;
         animator.SetTrigger("Got Killed?");
         // open the menu or do something
-
     }
 }

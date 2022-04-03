@@ -6,17 +6,27 @@ using Pathfinding;
 [RequireComponent(typeof(Seeker))]
 public class Movement : MonoBehaviour {
 
-    public Transform targetPosition;
+    [HideInInspector] public Transform targetPosition;
     private Enemy enemy;
     private Seeker seeker;
     public Path path;
-    public float speed = 2;
-    public float nextWaypointDistance = 3;
-    private int currentWaypoint = 0;
-    public float repathRate = 0.5f;
-    private float lastRepath = float.NegativeInfinity;
-    public bool reachedEndOfPath;
+
+    public float speed;
+
+    [HideInInspector] public float distanceToWaypoint;
+
+    [HideInInspector] public float nextWaypointDistance = 3;
+    [HideInInspector] private int currentWaypoint = 0;
+    [HideInInspector] public float repathRate = 0.25f;
+    [HideInInspector] private float lastRepath = float.NegativeInfinity;
+    [HideInInspector] public bool reachedEndOfPath;
     public bool repathEnabled = true;
+
+    [HideInInspector] public Vector3 startPosition;
+    [HideInInspector] public Vector3 velocity;
+    [HideInInspector] public Vector3 dir;
+
+    [HideInInspector] public bool donePath;
 
     private Animator animator;
 
@@ -24,10 +34,13 @@ public class Movement : MonoBehaviour {
         seeker = GetComponent<Seeker>();
         animator = transform.GetComponentInChildren<Animator>();
         enemy = GetComponent<Enemy>();
+
+        speed = 3f;
+        startPosition = transform.position;
     }
 
     public void OnPathComplete (Path p) {
-        Debug.Log("A path was calculated. Did it fail with an error? " + p.error);
+        // Debug.Log("A path was calculated. Did it fail with an error? " + p.error);
 
         // Path pooling. To avoid unnecessary allocations paths are reference counted.
         // Calling Claim will increase the reference count by 1 and Release will reduce
@@ -46,7 +59,7 @@ public class Movement : MonoBehaviour {
     }
 
     public void Update () {
-        if (Time.time > lastRepath + repathRate && seeker.IsDone() && repathEnabled) {
+        if (Time.time > lastRepath + repathRate && seeker.IsDone() && repathEnabled && targetPosition != null) {
             lastRepath = Time.time;
 
             // Start a new path to the targetPosition, call the the OnPathComplete function
@@ -64,7 +77,6 @@ public class Movement : MonoBehaviour {
         // several of them in the same frame.
         reachedEndOfPath = false;
         // The distance to the next waypoint in the path
-        float distanceToWaypoint;
         while (true) {
             // If you want maximum performance you can check the squared distance instead to get rid of a
             // square root calculation. But that is outside the scope of this tutorial.
@@ -86,29 +98,37 @@ public class Movement : MonoBehaviour {
 
         // Slow down smoothly upon approaching the end of the path
         // This value will smoothly go from 1 to 0 as the agent approaches the last waypoint in the path.
-        var speedFactor = reachedEndOfPath ? Mathf.Sqrt(distanceToWaypoint/nextWaypointDistance) : 1f;
+        // var speedFactor = reachedEndOfPath ? Mathf.Sqrt(distanceToWaypoint/nextWaypointDistance) : 1f;
 
         // Direction to the next waypoint
         // Normalize it so that it has a length of 1 world unit
-        Vector3 dir = (path.vectorPath[currentWaypoint] - transform.position).normalized;
+        dir = (path.vectorPath[currentWaypoint] - transform.position).normalized;
         // Multiply the direction by our desired speed to get a velocity
-        Vector3 velocity = dir * speed * speedFactor;
+        
+        // Vector3 velocity = dir * speed * speedFactor;
+        velocity = dir * speed;
+        //Debug.Log(path.vectorPath.Count);
 
+        // if enemy is close enough to the last waypoint in the set path
+        donePath = Vector2.Distance(transform.position, path.vectorPath[path.vectorPath.Count - 1]) < .15f;
+        // Debug.Log(donePath);
+
+        if(donePath && targetPosition == null) {
+            // code to wander for a bit
+            path = null;
+            dir = Vector3.zero;
+            velocity = Vector3.zero;
+        }
+
+    }
+
+    public void SetNewPath(Vector3 target) {
+        seeker.StartPath(transform.position, target, OnPathComplete);
+    }
+
+    private void FixedUpdate() {
         if(!enemy.frozen) {
-            transform.position += velocity * Time.deltaTime;
+            transform.position += dir * speed * Time.fixedDeltaTime;
         }
-
-        if(velocity.x > 0 || velocity.y > 0) {
-            animator.SetFloat("Movement Input", 1);
-        } else {
-            animator.SetFloat("Movement Input", 0);
-        }
-
-        if(dir.x < 0f) {
-            transform.GetChild(0).localScale = new Vector3(-1, transform.GetChild(0).localScale.y, transform.GetChild(0).localScale.z);
-        } else {
-            transform.GetChild(0).localScale = new Vector3(1, transform.GetChild(0).localScale.y, transform.GetChild(0).localScale.z);
-        }
-
     }
 }

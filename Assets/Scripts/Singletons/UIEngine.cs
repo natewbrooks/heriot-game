@@ -20,4 +20,5 @@ public class UIEngine : Singleton<UIEngine>
             GameEngine.Instance.Player.Frozen = equipmentMenuActive;
         }
     }
+
 }

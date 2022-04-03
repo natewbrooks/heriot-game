@@ -9,9 +9,26 @@ public abstract class Enemy : MonoBehaviour
     [HideInInspector] public Health health;
     [HideInInspector] public Movement movement;
     
-    public int damage, knockback;
-    public bool frozen;
     public Team team;
+    [Header("Arsenal")]
+    public Equipment.Arsenal leftHand;
+    public Equipment.Arsenal rightHand;
+    public int damage;
+    public int knockback;
+    [Header("Movement")]
+    public bool frozen;    
+    public float walkSpeed = 2f;
+    public float runSpeed = 3f;
+    public float approachSpeed = 1.25f;
+    public float blockSpeed = 1f;
+    [Header("Intelligence")]
+    public float visionRadius = 5f;
+
+    [HideInInspector] public Transform target;
+    [HideInInspector] public bool targetInRange;
+    [HideInInspector] public float distanceFromTarget;
+    
+
 
     public enum Team {
         Player,

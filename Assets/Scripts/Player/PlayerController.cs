@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     private Equipment equipment;
 
     private Vector2 movement;
-    private float walkSpeed = 3f, blockSpeed = 1f, runSpeed = 4f;
+    private float walkSpeed = 3f, blockSpeed = 1f, runSpeed = 4f, speed;
     private bool isRunning, isBlocking, canHit = true;
     private float attackRate = 4f, nextAttackTime = 0f;
 
@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
         health = GetComponent<Health>();
         player = GetComponent<Player>();
         equipment = GetComponent<Equipment>();
+
+        speed = walkSpeed;
     }
 
     // Update is called once per frame
@@ -95,16 +97,16 @@ public class PlayerController : MonoBehaviour
 
     void Move() {
         movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
-            
+
         if(isRunning) {
-            transform.position = new Vector2(transform.position.x + movement.x * runSpeed * Time.fixedDeltaTime, transform.position.y + movement.y * runSpeed * Time.fixedDeltaTime);
+            speed = runSpeed;
         } else if (isBlocking) {
-            transform.position = new Vector2(transform.position.x + movement.x * blockSpeed * Time.fixedDeltaTime, transform.position.y + movement.y * blockSpeed * Time.fixedDeltaTime);
-
+            speed = blockSpeed;
         } else {
-            transform.position = new Vector2(transform.position.x + movement.x * walkSpeed * Time.fixedDeltaTime, transform.position.y + movement.y * walkSpeed * Time.fixedDeltaTime);
-
+            speed = walkSpeed;
         }
+
+        transform.position += (Vector3)movement * speed * Time.fixedDeltaTime;
     }
 
 }
