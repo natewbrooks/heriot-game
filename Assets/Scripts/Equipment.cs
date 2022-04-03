@@ -17,11 +17,13 @@ public class Equipment : MonoBehaviour
     public enum Arsenal {
         Axe,
         Bow,
-        Hammer,
+        Dagger,
+        Javelin,
         Mace,
-        Scythe, 
         Shield, 
+        Spear,
         Sword, 
+        ThrowingAxe,
         Empty
     }
 
@@ -30,19 +32,24 @@ public class Equipment : MonoBehaviour
     private int currentToolIndex;
 
     [Header("Equipment Settings")]
-    [SerializeField] private Arsenal[] weaponsEquipped = {Arsenal.Empty, Arsenal.Empty, Arsenal.Empty, Arsenal.Empty};
+    [SerializeField] private GameObject menu;
+    [SerializeField] public Arsenal[] weaponsEquipped = {Arsenal.Empty, Arsenal.Empty, Arsenal.Empty, Arsenal.Empty};
 
     [SerializeField] private Arsenal _leftHand;
     [SerializeField] private Arsenal _rightHand;
+    private int _leftHandIndex;
+    private int _rightHandIndex;
 
     [Header("Misc")]
-    [SerializeField] private bool _dualWielding;
     [SerializeField] private bool _combatMode;
     
-    public Arsenal LeftHand { get { return _leftHand; } }
-    public Arsenal RightHand { get { return _rightHand; } }
-    public Tools Tool { get { return _currentTool; } }
+    public Arsenal LeftHand { get { return _leftHand; } set { _leftHand = value; } }
+    public Arsenal RightHand { get { return _rightHand; } set { _rightHand = value; } }
+    public Tools Tool { get { return _currentTool; } set { _currentTool = value; }}
     public bool CombatMode { get { return _combatMode; } }
+
+    public int LeftHandIndex {get { return _leftHandIndex; } }
+    public int RightHandIndex {get { return _rightHandIndex; } }
 
     
 
@@ -50,11 +57,13 @@ public class Equipment : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _rightHand = weaponsEquipped[0];
-        _leftHand = weaponsEquipped[2];
+        _leftHand = weaponsEquipped[0];
+        _rightHand = weaponsEquipped[2];
+        _leftHandIndex = 0;
+        _rightHandIndex = 2;
+
         currentToolIndex = (int) _currentTool;
 
-        UIEngine.Instance.UpdateAllUI();
     }
 
     // Update is called once per frame
@@ -62,43 +71,36 @@ public class Equipment : MonoBehaviour
     {
         ScrollLogic();
     }
-
-
-
+    
     void ScrollLogic () {
         
         // toggle between combat and non combat modes to swap and use weapons
         if(Input.GetKeyDown(KeyCode.Tab)) {
             _combatMode = !_combatMode;
-            UIEngine.Instance.UpdateCombatUI(_combatMode);
         }
 
         
         if(_combatMode) {
             // left hand scrolls between first and second equipped weapon
             if(Input.GetKeyDown(KeyCode.LeftBracket)) {
-                if(_leftHand == weaponsEquipped[2]) {
-                    _leftHand = weaponsEquipped[3];
+                if(_leftHand == weaponsEquipped[0]) {
+                    _leftHandIndex = 1;
+                    _leftHand = weaponsEquipped[1];
                 } else {
-                    _leftHand = weaponsEquipped[2];
+                    _leftHandIndex = 0;
+                    _leftHand = weaponsEquipped[0];
                 }
-                UIEngine.Instance.UpdateLefthandUI(_leftHand);
             }
 
             // right hand scrolls between the third and fourth equipped weapon
             if(Input.GetKeyDown(KeyCode.RightBracket)) {
-                if(_rightHand == weaponsEquipped[0]) {
-                    _rightHand = weaponsEquipped[1];
+                if(_rightHand == weaponsEquipped[2]) {
+                    _rightHandIndex = 3;
+                    _rightHand = weaponsEquipped[3];
                 } else {
-                    _rightHand = weaponsEquipped[0];
+                    _rightHandIndex = 2;
+                    _rightHand = weaponsEquipped[2];
                 }
-                UIEngine.Instance.UpdateRighthandUI(_rightHand);
-            }
-
-            if(_rightHand == _leftHand) {
-                _dualWielding = true;
-            } else {
-                _dualWielding = false;
             }
         } else {
             if(Input.GetKeyDown(KeyCode.LeftBracket)) {
@@ -108,7 +110,6 @@ public class Equipment : MonoBehaviour
                     currentToolIndex = Enum.GetNames(typeof(Tools)).Length - 1;
                 }
                 _currentTool = (Tools) currentToolIndex;
-                UIEngine.Instance.UpdateToolUI(_currentTool);
             }
 
             if(Input.GetKeyDown(KeyCode.RightBracket)) {
@@ -118,7 +119,6 @@ public class Equipment : MonoBehaviour
                     currentToolIndex = 0;
                 }
                 _currentTool = (Tools) currentToolIndex;
-                UIEngine.Instance.UpdateToolUI(_currentTool);
             }
         }
     }

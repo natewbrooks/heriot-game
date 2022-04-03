@@ -4,5 +4,7 @@ using UnityEngine;
 
 public class GameEngine : Singleton<GameEngine>
 {
-    public Player GetPlayer { get { return GameObject.FindWithTag("Player").GetComponent<Player>(); } }
+    [SerializeField] private Player _player;
+    public Player Player { get { return _player; } }
+    
 }

@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     // accessors
     public int Damage { get {return _damage; } }
     public int Knockback { get { return _knockback; } }
-    public bool Frozen { get { return _frozen; } }
+    public bool Frozen { get { return _frozen; } set { _frozen = value; } }
 
     private void Start() {
         health = GetComponent<Health>();
