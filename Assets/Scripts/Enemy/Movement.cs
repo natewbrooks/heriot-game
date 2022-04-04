@@ -2,16 +2,34 @@ using UnityEngine;
 // Note this line, if it is left out, the script won't know that the class 'Path' exists and it will throw compiler errors
 // This line should always be present at the top of scripts which use pathfinding
 using Pathfinding;
+using System.Collections;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(Seeker))]
 public class Movement : MonoBehaviour {
 
-    [HideInInspector] public Transform targetPosition;
     private Enemy enemy;
     private Seeker seeker;
     public Path path;
 
     public float speed;
+    public bool repathEnabled = true;
+
+    [Header("Intelligence")]
+    [Range(3f, 25f)]
+    public float visionRadius = 10f;
+    [Range(1f, 10f)]
+    public float avoidanceRadius = 1.5f;
+    [Range(0f, 1f)]
+    public float avoidanceRadiusMultiplier = 0.5f;
+
+
+    [HideInInspector] public float squareAvoidanceRadius;
+    [HideInInspector] public float distanceFromTarget;
+
+    public Transform target;
+    public List<Transform> targetsInRange = new List<Transform>();
+
 
     [HideInInspector] public float distanceToWaypoint;
 
@@ -20,7 +38,6 @@ public class Movement : MonoBehaviour {
     [HideInInspector] public float repathRate = 0.25f;
     [HideInInspector] private float lastRepath = float.NegativeInfinity;
     [HideInInspector] public bool reachedEndOfPath;
-    public bool repathEnabled = true;
 
     [HideInInspector] public Vector3 startPosition;
     [HideInInspector] public Vector3 velocity;
@@ -37,16 +54,10 @@ public class Movement : MonoBehaviour {
 
         speed = 3f;
         startPosition = transform.position;
+        squareAvoidanceRadius = squareAvoidanceRadius * avoidanceRadiusMultiplier * squareAvoidanceRadius;
     }
 
     public void OnPathComplete (Path p) {
-        // Debug.Log("A path was calculated. Did it fail with an error? " + p.error);
-
-        // Path pooling. To avoid unnecessary allocations paths are reference counted.
-        // Calling Claim will increase the reference count by 1 and Release will reduce
-        // it by one, when it reaches zero the path will be pooled and then it may be used
-        // by other scripts. The ABPath.Construct and Seeker.StartPath methods will
-        // take a path from the pool if possible. See also the documentation page about path pooling.
         p.Claim(this);
         if (!p.error) {
             if (path != null) path.Release(this);
@@ -59,12 +70,10 @@ public class Movement : MonoBehaviour {
     }
 
     public void Update () {
-        if (Time.time > lastRepath + repathRate && seeker.IsDone() && repathEnabled && targetPosition != null) {
+        if (Time.time > lastRepath + repathRate && seeker.IsDone() && repathEnabled && target != null) {
             lastRepath = Time.time;
 
-            // Start a new path to the targetPosition, call the the OnPathComplete function
-            // when the path has been calculated (which may take a few frames depending on the complexity)
-            seeker.StartPath(transform.position, targetPosition.position, OnPathComplete);
+            seeker.StartPath(transform.position, target.position, OnPathComplete);
         }
 
         if (path == null) {
@@ -72,14 +81,9 @@ public class Movement : MonoBehaviour {
             return;
         }
 
-        // Check in a loop if we are close enough to the current waypoint to switch to the next one.
-        // We do this in a loop because many waypoints might be close to each other and we may reach
-        // several of them in the same frame.
         reachedEndOfPath = false;
         // The distance to the next waypoint in the path
         while (true) {
-            // If you want maximum performance you can check the squared distance instead to get rid of a
-            // square root calculation. But that is outside the scope of this tutorial.
             distanceToWaypoint = Vector3.Distance(transform.position, path.vectorPath[currentWaypoint]);
             if (distanceToWaypoint < nextWaypointDistance) {
                 // Check if there is another waypoint or if we have reached the end of the path
@@ -96,39 +100,109 @@ public class Movement : MonoBehaviour {
             }
         }
 
-        // Slow down smoothly upon approaching the end of the path
-        // This value will smoothly go from 1 to 0 as the agent approaches the last waypoint in the path.
-        // var speedFactor = reachedEndOfPath ? Mathf.Sqrt(distanceToWaypoint/nextWaypointDistance) : 1f;
-
-        // Direction to the next waypoint
-        // Normalize it so that it has a length of 1 world unit
         dir = (path.vectorPath[currentWaypoint] - transform.position).normalized;
-        // Multiply the direction by our desired speed to get a velocity
-        
-        // Vector3 velocity = dir * speed * speedFactor;
         velocity = dir * speed;
-        //Debug.Log(path.vectorPath.Count);
-
-        // if enemy is close enough to the last waypoint in the set path
         donePath = Vector2.Distance(transform.position, path.vectorPath[path.vectorPath.Count - 1]) < .15f;
-        // Debug.Log(donePath);
 
-        if(donePath && targetPosition == null) {
+        if(donePath && target == null) {
             // code to wander for a bit
             path = null;
             dir = Vector3.zero;
             velocity = Vector3.zero;
         }
-
     }
 
     public void SetNewPath(Vector3 target) {
         seeker.StartPath(transform.position, target, OnPathComplete);
     }
 
+    public float CheckDistance(Vector3 position) {
+        return Vector2.Distance(transform.position, position);
+        
+    }
+
     private void FixedUpdate() {
-        if(!enemy.frozen) {
-            transform.position += dir * speed * Time.fixedDeltaTime;
+        targetsInRange = GetNearbyObjects();
+        target = SearchClosestTarget(targetsInRange);
+
+        if(target != null) {
+             foreach (Transform obj in targetsInRange) {
+                 if(obj.gameObject.tag == "Enemy" && obj.gameObject.GetComponent<Movement>().target == null) {
+                     obj.gameObject.GetComponent<Movement>().target = target;
+                 }
+             }
         }
+
+        Move();
+    }
+
+    private Transform SearchClosestTarget(List<Transform> arr) {
+        float closetTargetDistance = 100f;
+        int targetIndex = -1;
+
+            for (int i = 0; i < arr.Count; i++) {     
+                if ((arr[i].tag == "Player" && enemy.team != Enemy.Team.Player) || (arr[i].tag == "Enemy" && arr[i].gameObject.GetComponent<Enemy>().team != enemy.team)) {
+                    if(CheckDistance(arr[i].gameObject.transform.position) < closetTargetDistance) {
+                        closetTargetDistance = Vector2.Distance(transform.position, arr[i].gameObject.transform.position);
+                        targetIndex = i;
+                    }
+                }
+            }      
+
+            // if a target exists, return it and set the distance and end any instance of return
+            if(targetIndex > -1) {
+                StopCoroutine(ReturnToPost());
+                distanceFromTarget = CheckDistance(arr[targetIndex].gameObject.transform.position);
+                return arr[targetIndex].gameObject.transform;
+            }
+            return null;
+    }
+    
+     private List<Transform> GetNearbyObjects() {
+        List<Transform> colliderTransforms = new List<Transform>();
+        Collider2D[] inRange = Physics2D.OverlapCircleAll(transform.position, visionRadius, LayerMask.GetMask("Enemy"));
+
+        foreach (Collider2D c in inRange)
+        {
+            if(c != GetComponent<Collider2D>()) {
+                colliderTransforms.Add(c.transform);
+            }
+        }
+        return colliderTransforms;
+    }
+
+    public Vector2 CalculateAvoidance(List<Transform> colliderTransforms) {
+        Vector2 avoidanceMove = Vector2.zero;
+        int nAvoid = 0;
+        foreach(Transform item in colliderTransforms) {
+            if(Vector2.SqrMagnitude(item.position - transform.position) < squareAvoidanceRadius) {
+                nAvoid++;
+                avoidanceMove += (Vector2)(transform.position - item.position);
+            }
+        }
+        if(nAvoid > 0) {
+            avoidanceMove /= nAvoid;
+        }
+
+        return avoidanceMove;
+    }
+
+    public IEnumerator ReturnToPost() {
+        yield return new WaitForSeconds(10);
+        path = null;
+        donePath = true;
+        enemy.finalSearch = false;
+        enemy.state = Enemy.State.Return;
+    }
+
+    public void Move() {
+        transform.position += dir * speed * Time.fixedDeltaTime;
+    }
+
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, visionRadius);    
     }
 }
+
+                

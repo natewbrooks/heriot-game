@@ -8,6 +8,8 @@ TagManager:
   - NPC
   - Enemy
   - Equipment Menu
+  - Weapon
+  - Shield
   layers:
   - Default
   - TransparentFX
