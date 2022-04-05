@@ -49,8 +49,8 @@ public class Movement : MonoBehaviour {
 
     public void Start () {
         seeker = GetComponent<Seeker>();
-        animator = transform.GetComponentInChildren<Animator>();
         enemy = GetComponent<Enemy>();
+        animator = transform.GetComponentInChildren<Animator>();
 
         speed = 3f;
         startPosition = transform.position;

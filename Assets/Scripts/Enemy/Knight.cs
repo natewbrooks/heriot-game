@@ -8,7 +8,6 @@ public class Knight : Enemy
     
     [SerializeField] private TextMeshProUGUI stateText; 
     
-    private float timeUntilReturn = 2f;
 
     private void Update() {
         stateText.text = state.ToString();
@@ -110,9 +109,9 @@ public class Knight : Enemy
         }
 
         if(movement.dir.x < 0) {
-            transform.GetChild(0).localScale = new Vector3(-1, transform.GetChild(0).localScale.y, transform.GetChild(0).localScale.z);
+            transform.GetChild(0).localScale = new Vector3(-1, transform.GetChild(0).localScale.y, 0);
         } else if (movement.dir.x > 0) {
-            transform.GetChild(0).localScale = new Vector3(1, transform.GetChild(0).localScale.y, transform.GetChild(0).localScale.z);
+            transform.GetChild(0).localScale = new Vector3(1, transform.GetChild(0).localScale.y, 0);
         } else {
             transform.GetChild(0).localScale = transform.GetChild(0).localScale;
         }
@@ -161,8 +160,6 @@ public class Knight : Enemy
     }
 
     public override void OnDeath() {
-        frozen = true;
-        state = State.Idle;
         movement.dir = Vector3.zero;
         health.TakeKnockback = false;
         animator.SetTrigger("Got Killed?");

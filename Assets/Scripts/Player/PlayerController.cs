@@ -77,9 +77,9 @@ public class PlayerController : MonoBehaviour
         
         // flip character and children
         if(movement.x < 0) {
-            transform.GetChild(0).localScale = new Vector3(-1, transform.GetChild(0).localScale.y, transform.GetChild(0).localScale.z);
+            transform.GetChild(0).localScale = new Vector3(-1, transform.GetChild(0).localScale.y, 0);
         } else if (movement.x > 0) {
-            transform.GetChild(0).localScale = new Vector3(1, transform.GetChild(0).localScale.y, transform.GetChild(0).localScale.z);
+            transform.GetChild(0).localScale = new Vector3(1, transform.GetChild(0).localScale.y, 0);
         } else {
             transform.GetChild(0).localScale = transform.GetChild(0).localScale;
         }

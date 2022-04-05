@@ -18,7 +18,11 @@ public class PlayerHitbox : MonoBehaviour
             colliderHealth = other.GetComponent<Health>();
             enemy = other.gameObject.GetComponent<Enemy>();
 
-            if(colliderHealth != null && enemy.team != Enemy.Team.Player && enemy != null) {
+            if(colliderHealth != null && enemy != null) {
+                if(enemy.team != Enemy.Team.Player && enemy != null) {
+                    colliderHealth.TakeDamage(player.Damage, player.Knockback, player.gameObject);
+                }
+            } else if(colliderHealth != null && enemy == null) {
                 colliderHealth.TakeDamage(player.Damage, player.Knockback, player.gameObject);
             }
 
