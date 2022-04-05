@@ -16,57 +16,41 @@ public class Knight : Enemy
 
         switch(state) {
             case State.Approach:
-                movement.repathEnabled = true;
-                movement.speed = approachSpeed;
+                agent.speed = approachSpeed;
                 animator.SetBool("Is Running", false);
-                frozen = false;
                 break;
             case State.Attack:
-                movement.repathEnabled = false;
                 animator.SetBool("Is Running", false);
                 AttackStance();
                 movement.dir = Vector3.zero;
-                frozen = true;
                 // code
                 break;
             case State.Block:
-                movement.repathEnabled = false;
                 animator.SetBool("Is Running", false);
-                frozen = true;
                 //code
                 break;
             case State.Chase:
-                movement.repathEnabled = true;
-                movement.speed = runSpeed;
+                agent.speed = runSpeed;
                 animator.SetBool("Is Running", true);
-                frozen = false;
                 //code
                 break;
             case State.Idle:
-                movement.repathEnabled = false;
                 animator.SetBool("Is Running", false);
-                frozen = true;
                 //code
                 break;
             case State.Return:
-                movement.SetNewPath(movement.startPosition);
-                movement.repathEnabled = false;
+                agent.SetDestination(movement.startPosition);
                 animator.SetBool("Is Running", false);
-                frozen = false;
                 break;
             case State.Patrol:
                 StartReturnSequence();
-                movement.repathEnabled = false;
-                movement.speed = walkSpeed;
+                agent.speed = walkSpeed;
                 animator.SetBool("Is Running", false);
-                frozen = false;
                 //code
                 break;
             case State.Walk:
-                movement.repathEnabled = true;
-                movement.speed = walkSpeed;
+                agent.speed = walkSpeed;
                 animator.SetBool("Is Running", false);
-                frozen = false;
                 //code
                 break;
         }
@@ -102,7 +86,7 @@ public class Knight : Enemy
 
     private void AnimationHandler() {
         // flip character
-        if(movement.velocity.x != 0 || movement.velocity.y != 0) {
+        if(agent.velocity.x != 0 || agent.velocity.y != 0) {
             animator.SetFloat("Movement Input", 1);
         } else {
             animator.SetFloat("Movement Input", 0);
@@ -121,18 +105,18 @@ public class Knight : Enemy
     private void AttackStance() {
         if((int) Random.Range(0f, 2f) == 1f && attackCooldown == 2f){
             isBlocking = false;
-            movement.speed = approachSpeed;
+            agent.speed = approachSpeed;
             animator.SetTrigger("Sword Attack");
             transform.GetChild(0).GetChild(1).gameObject.SetActive(false);
         } else {
             isBlocking = true;
-            movement.speed = blockSpeed;
+            agent.speed = blockSpeed;
             transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
         }
 
         if(isBlocking == true) {
             isBlocking = true;
-            movement.speed = blockSpeed;
+            agent.speed = blockSpeed;
         }
 
         if(attackCooldown > 0f) {
@@ -148,8 +132,8 @@ public class Knight : Enemy
             StartCoroutine(movement.ReturnToPost());
         }
 
-        if(movement.path == null) {
-            movement.SetNewPath(new Vector3(transform.position.x + Random.Range(-5f, 5f), transform.position.y + Random.Range(-5f, 5f), 0));
+        if(agent.hasPath == false) {
+            agent.SetDestination(new Vector3(transform.position.x + Random.Range(-5f, 5f), transform.position.y + Random.Range(-5f, 5f), 0));
         }
         finalSearch = true;
     }

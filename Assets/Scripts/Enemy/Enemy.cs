@@ -8,6 +8,7 @@ public abstract class Enemy : MonoBehaviour
     [HideInInspector] public Animator animator;
     [HideInInspector] public Health health;
     [HideInInspector] public Movement movement;
+    [HideInInspector] public UnityEngine.AI.NavMeshAgent agent;
     
     public Team team;
     public State state = State.Idle;
@@ -21,7 +22,6 @@ public abstract class Enemy : MonoBehaviour
     [HideInInspector] public float attackCooldown = 2f;
 
     [Header("Movement")]
-    public bool frozen;    
     public float walkSpeed = 2f;
     public float runSpeed = 3f;
     public float approachSpeed = 1.25f;
@@ -48,6 +48,7 @@ public abstract class Enemy : MonoBehaviour
         animator = transform.GetComponentInChildren<Animator>();
         health = GetComponent<Health>();
         movement = GetComponent<Movement>();
+        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
     }
 
 

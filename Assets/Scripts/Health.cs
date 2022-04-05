@@ -63,11 +63,11 @@ public class Health : MonoBehaviour
     }
     IEnumerator Knockback(float knockbackPower, GameObject dealer) {
 
-        Vector3 difference = transform.position - dealer.transform.position;
+        Vector2 difference = (Vector2)transform.position - (Vector2)dealer.transform.position;
         difference = difference.normalized * knockbackPower;
         
         if(gameObject != null) {
-            transform.DOMove(transform.position + difference, .45f);
+            transform.DOMove(transform.position + (Vector3)difference, .45f);
             GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         }
 
