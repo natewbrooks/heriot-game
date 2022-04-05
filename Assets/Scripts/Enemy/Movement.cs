@@ -9,6 +9,7 @@ public class Movement : MonoBehaviour {
     private Enemy enemy;
 
     public bool repathEnabled = true;
+    public bool finalSearch = true;
 
     [Header("Intelligence")]
     [Range(3f, 25f)]
@@ -50,6 +51,7 @@ public class Movement : MonoBehaviour {
         }
 
         if(target != null) {
+            agent.ResetPath();
              foreach (Transform obj in targetsInRange) {
                 if(obj.gameObject.tag == "Enemy" && obj.gameObject.GetComponent<Movement>().target == null) {
                     obj.gameObject.GetComponent<Movement>().target = target;
@@ -101,20 +103,21 @@ public class Movement : MonoBehaviour {
     }
 
     public void StartReturnSequence() {
-        Debug.Log("before");
-        StartCoroutine(ReturnToPost());
-        Debug.Log("after");
-
+        if(finalSearch) {
+            StartCoroutine(ReturnToPost());
+        }
+        // patrol the area
         if(agent.hasPath == false) {
             agent.SetDestination(new Vector3(transform.position.x + Random.Range(-5f, 5f), transform.position.y + Random.Range(-5f, 5f), 0));
         }
     }
 
     public IEnumerator ReturnToPost() {
+        finalSearch = false;
         yield return new WaitForSeconds(10);
         donePath = true;
         enemy.state = Enemy.State.Return;
-        Debug.Log("ME");
+        finalSearch = true;
     }
 
     // public void Move() {

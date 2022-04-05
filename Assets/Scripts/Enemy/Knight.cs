@@ -48,6 +48,7 @@ public class Knight : Enemy
                 break;
             case State.Patrol:
                 agent.autoBraking = false;
+                Debug.Log("spam");
                 movement.StartReturnSequence();
                 agent.speed = walkSpeed;
                 animator.SetBool("Is Running", false);
@@ -90,7 +91,7 @@ public class Knight : Enemy
 
         } else if(movement.target == null && state != State.Return && state != State.Idle) {
             state = State.Patrol;
-        } else if (state == State.Return && transform.position == movement.startPosition) {
+        } else if (state == State.Return && movement.CheckDistance(movement.startPosition) < .15f) {
             state = State.Idle;
         }
     }
