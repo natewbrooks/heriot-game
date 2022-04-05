@@ -13,6 +13,7 @@ public abstract class Enemy : MonoBehaviour
     public Team team;
     public State state = State.Idle;
 
+
     [Header("Arsenal")]
     public Equipment.Arsenal leftHand;
     public Equipment.Arsenal rightHand;
@@ -26,7 +27,6 @@ public abstract class Enemy : MonoBehaviour
     public float runSpeed = 3f;
     public float approachSpeed = 1.25f;
     public float blockSpeed = 1f;
-    public bool finalSearch = true;
 
     public enum Team {
         Player,

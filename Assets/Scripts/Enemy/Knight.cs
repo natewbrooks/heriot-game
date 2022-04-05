@@ -16,6 +16,7 @@ public class Knight : Enemy
 
         switch(state) {
             case State.Approach:
+                agent.autoBraking = true;
                 agent.speed = approachSpeed;
                 animator.SetBool("Is Running", false);
                 break;
@@ -30,25 +31,30 @@ public class Knight : Enemy
                 //code
                 break;
             case State.Chase:
+                agent.autoBraking = true;
                 agent.speed = runSpeed;
                 animator.SetBool("Is Running", true);
                 //code
                 break;
             case State.Idle:
+                agent.autoBraking = true;
                 animator.SetBool("Is Running", false);
                 //code
                 break;
             case State.Return:
+                agent.autoBraking = true;
                 agent.SetDestination(movement.startPosition);
                 animator.SetBool("Is Running", false);
                 break;
             case State.Patrol:
-                StartReturnSequence();
+                agent.autoBraking = false;
+                movement.StartReturnSequence();
                 agent.speed = walkSpeed;
                 animator.SetBool("Is Running", false);
                 //code
                 break;
             case State.Walk:
+                agent.autoBraking = true;
                 agent.speed = walkSpeed;
                 animator.SetBool("Is Running", false);
                 //code
@@ -74,13 +80,18 @@ public class Knight : Enemy
                 state = State.Approach;
             } else if (movement.distanceFromTarget < 1.25f) {
                 state = State.Attack;
+            } if (state == State.Return) {
+                state = State.Chase;
             }
 
             if(movement.distanceFromTarget > movement.visionRadius) {
                 movement.target = null;
             }
+
         } else if(movement.target == null && state != State.Return && state != State.Idle) {
             state = State.Patrol;
+        } else if (state == State.Return && transform.position == movement.startPosition) {
+            state = State.Idle;
         }
     }
 
@@ -126,17 +137,6 @@ public class Knight : Enemy
                attackCooldown = 2f;
            }
         }
-
-    public void StartReturnSequence() {
-        if(finalSearch) {
-            StartCoroutine(movement.ReturnToPost());
-        }
-
-        if(agent.hasPath == false) {
-            agent.SetDestination(new Vector3(transform.position.x + Random.Range(-5f, 5f), transform.position.y + Random.Range(-5f, 5f), 0));
-        }
-        finalSearch = true;
-    }
     
     
     public override void TakeHit() {

@@ -20,12 +20,10 @@ public class Movement : MonoBehaviour {
 
     public Transform target;
     public List<Transform> targetsInRange = new List<Transform>();
-    public UnityEngine.AI.NavMeshAgent agent;
-    public UnityEngine.AI.NavMeshPath path;
+    [HideInInspector] public UnityEngine.AI.NavMeshAgent agent;
     private Animator animator;
 
 
-    [HideInInspector] public float distanceToWaypoint;
     [HideInInspector] public Vector3 startPosition;
     [HideInInspector] public Vector3 dir;
     [HideInInspector] public bool donePath;
@@ -53,10 +51,10 @@ public class Movement : MonoBehaviour {
 
         if(target != null) {
              foreach (Transform obj in targetsInRange) {
-                 if(obj.gameObject.tag == "Enemy" && obj.gameObject.GetComponent<Movement>().target == null) {
-                     obj.gameObject.GetComponent<Movement>().target = target;
-                 }
-             }
+                if(obj.gameObject.tag == "Enemy" && obj.gameObject.GetComponent<Movement>().target == null) {
+                    obj.gameObject.GetComponent<Movement>().target = target;
+                }
+            }
             agent.SetDestination(target.position);
         }
     }
@@ -102,11 +100,21 @@ public class Movement : MonoBehaviour {
         return colliderTransforms;
     }
 
+    public void StartReturnSequence() {
+        Debug.Log("before");
+        StartCoroutine(ReturnToPost());
+        Debug.Log("after");
+
+        if(agent.hasPath == false) {
+            agent.SetDestination(new Vector3(transform.position.x + Random.Range(-5f, 5f), transform.position.y + Random.Range(-5f, 5f), 0));
+        }
+    }
+
     public IEnumerator ReturnToPost() {
         yield return new WaitForSeconds(10);
         donePath = true;
-        enemy.finalSearch = false;
         enemy.state = Enemy.State.Return;
+        Debug.Log("ME");
     }
 
     // public void Move() {
