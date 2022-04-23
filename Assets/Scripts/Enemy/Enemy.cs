@@ -15,10 +15,9 @@ public abstract class Enemy : MonoBehaviour
 
 
     [Header("Arsenal")]
-    public Equipment.Arsenal leftHand;
-    public Equipment.Arsenal rightHand;
-    public int damage;
-    public int knockback;
+    public WeaponData leftHand;
+    public WeaponData rightHand;
+
     [HideInInspector] public bool isBlocking;
     [HideInInspector] public float attackCooldown = 2f;
 

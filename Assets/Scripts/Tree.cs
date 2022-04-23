@@ -14,7 +14,7 @@ public class Tree : MonoBehaviour
     }
     
     private void OnDeath() {
-        Instantiate(stump, transform.GetChild(0).position, transform.GetChild(0).transform.rotation);
+        Instantiate(stump, transform.position, Quaternion.identity);
         for (int i = 0; i < dropAmount; i++)
         {
            GameObject nextDrop = Instantiate(drop, transform.GetChild(0).transform.position, transform.GetChild(0).transform.rotation);

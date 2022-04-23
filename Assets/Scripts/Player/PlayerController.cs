@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     private Health health;
     private Player player;
     private Equipment equipment;
+    private Arsenal arsenal;
 
     private Vector2 movement;
     private float walkSpeed = 3f, blockSpeed = 1f, runSpeed = 4f, speed;
@@ -21,7 +22,8 @@ public class PlayerController : MonoBehaviour
         health = GetComponent<Health>();
         player = GetComponent<Player>();
         equipment = GetComponent<Equipment>();
-
+        arsenal = GetComponent<Arsenal>();
+        
         speed = walkSpeed;
     }
 
@@ -48,7 +50,7 @@ public class PlayerController : MonoBehaviour
             }
 
             // blocking
-            if(Input.GetMouseButton(1) && (equipment.LeftHand == Equipment.Arsenal.Shield)) {
+            if(Input.GetMouseButton(1) && (arsenal.activeLeft is ShieldData)) {
                 isBlocking = true;
                 health.TakeKnockback = false;
                 health.Immune = true;

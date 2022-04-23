@@ -48,7 +48,6 @@ public class Knight : Enemy
                 break;
             case State.Patrol:
                 agent.autoBraking = false;
-                Debug.Log("spam");
                 movement.StartReturnSequence();
                 agent.speed = walkSpeed;
                 animator.SetBool("Is Running", false);

@@ -210,6 +210,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -508,6 +509,17 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      temp_character_sword_9: 4273380783356174481
+      temp_character_sword_0: 7960538905847613305
+      temp_character_sword_7: 152349327253177257
+      temp_character_sword_3: 3042419872665419478
+      temp_character_sword_8: -3899750745235425333
+      temp_character_sword_4: 8575768780163987643
+      temp_character_sword_1: -4712476174626658953
+      temp_character_sword_5: 6712477941578765588
+      temp_character_sword_6: -2007777607480224093
+      temp_character_sword_2: -2953035401097787414
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

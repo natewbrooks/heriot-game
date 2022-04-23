@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 176198187}
   - component: {fileID: 176198188}
   - component: {fileID: 3518242847393690580}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Shield Hitbox
   m_TagString: Shield
   m_Icon: {fileID: 0}
@@ -81,7 +81,8 @@ GameObject:
   - component: {fileID: 1366342692383550270}
   - component: {fileID: 1366342692383550271}
   - component: {fileID: 1366342692383550269}
-  m_Layer: 6
+  - component: {fileID: 1245630959}
+  m_Layer: 8
   m_Name: Sprite
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -96,7 +97,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1366342692383550259}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.132, y: 0.024, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1366342694385360083}
@@ -174,6 +175,32 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1773428102 &1245630959
+ParentConstraint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366342692383550259}
+  m_Enabled: 1
+  m_Weight: 1
+  m_TranslationAtRest: {x: -0.132, y: 0.024, z: 0}
+  m_RotationAtRest: {x: 0, y: 0, z: 0}
+  m_TranslationOffsets:
+  - {x: 0, y: 0, z: 0}
+  m_RotationOffsets:
+  - {x: 0, y: 0, z: 0}
+  m_AffectTranslationX: 1
+  m_AffectTranslationY: 1
+  m_AffectTranslationZ: 1
+  m_AffectRotationX: 1
+  m_AffectRotationY: 1
+  m_AffectRotationZ: 1
+  m_IsContraintActive: 1
+  m_IsLocked: 1
+  m_Sources:
+  - sourceTransform: {fileID: 1366342694404539312}
+    weight: 1
 --- !u!1 &1366342692791492635
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,7 +212,7 @@ GameObject:
   - component: {fileID: 1366342692791492634}
   - component: {fileID: 1366342692791492632}
   - component: {fileID: 1366342692791492633}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +287,7 @@ GameObject:
   - component: {fileID: 1366342693389127908}
   - component: {fileID: 1366342693389127906}
   - component: {fileID: 1366342693389127907}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Back Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -337,7 +364,7 @@ GameObject:
   - component: {fileID: 1366342693441811721}
   - component: {fileID: 1366342693441811722}
   - component: {fileID: 1366342693441811723}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Healthbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -453,7 +480,7 @@ GameObject:
   - component: {fileID: 1366342694212250465}
   - component: {fileID: 1366342694212250479}
   - component: {fileID: 1366342694212250464}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -528,7 +555,7 @@ GameObject:
   - component: {fileID: 1366342694372066805}
   - component: {fileID: 1366342694372066803}
   - component: {fileID: 1366342694372066804}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -633,7 +660,7 @@ GameObject:
   - component: {fileID: 1366342694385360083}
   - component: {fileID: 1366342694385360082}
   - component: {fileID: 1366342694385360081}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Sword Hitbox
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -706,9 +733,10 @@ GameObject:
   - component: {fileID: 1366342694404539327}
   - component: {fileID: 1366342694404539324}
   - component: {fileID: 63687525}
+  - component: {fileID: 276488138}
   - component: {fileID: 1366342694404539326}
   - component: {fileID: 3819860695122505688}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -822,11 +850,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentTool: 0
-  menu: {fileID: 0}
-  weaponsEquipped: 07000000070000000700000007000000
-  _leftHand: 0
-  _rightHand: 0
-  _combatMode: 0
+--- !u!114 &276488138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366342694404539313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9aefaf3bab148549b60511c1c9ffef7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeLeft: {fileID: 0}
+  activeRight: {fileID: 0}
+  leftWeapons:
+  - {fileID: 11400000, guid: 3a8c7f8d5f6459645be5744c5a39977d, type: 2}
+  - {fileID: 11400000, guid: 5c07298585d82b5459286e3ee743732d, type: 2}
+  rightWeapons:
+  - {fileID: 11400000, guid: fb13bdc1f4992ae4483808e5130274d7, type: 2}
+  - {fileID: 11400000, guid: 8bffffd40faf1eb488fb5c09c99aab89, type: 2}
 --- !u!114 &1366342694404539326
 MonoBehaviour:
   m_ObjectHideFlags: 0

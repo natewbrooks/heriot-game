@@ -11,7 +11,7 @@ public class Pickup : MonoBehaviour
     // Start is called before the first frame update
 
     private void FixedUpdate() {
-        pickupLayer = LayerMask.GetMask("Player");
+        pickupLayer = LayerMask.GetMask("Enemy");
         inPickupRange = Physics2D.OverlapCircle(transform.position, pickupRadius, pickupLayer);
         target = Physics2D.OverlapCircle(transform.position, pickupRadius, pickupLayer);
     }
@@ -19,7 +19,7 @@ public class Pickup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(inPickupRange) {
+        if(inPickupRange && target.name == "Player") {
             transform.position = Vector2.MoveTowards(transform.position, target.gameObject.transform.position, 10f * Time.deltaTime);
             
             if(transform.position == target.gameObject.transform.position) {

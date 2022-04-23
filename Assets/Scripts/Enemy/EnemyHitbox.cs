@@ -16,13 +16,13 @@ public class EnemyHitbox : MonoBehaviour
 
             if(other.tag == "Player" && colliderHealth != null) {
                 if(thisEnemy.team != Enemy.Team.Player) {
-                    colliderHealth.TakeDamage(thisEnemy.damage, thisEnemy.knockback, this.gameObject);
+                    colliderHealth.TakeDamage(Random.Range(thisEnemy.leftHand.damageRange.x, thisEnemy.leftHand.damageRange.y), thisEnemy.leftHand.knockback, this.gameObject);
                 }
             } 
             
             if(other.tag == "Enemy") {
                 if((other.gameObject.GetComponent<Enemy>().team != thisEnemy.team) && colliderHealth != null) {
-                    colliderHealth.TakeDamage(thisEnemy.damage, thisEnemy.knockback, this.gameObject);
+                    colliderHealth.TakeDamage(Random.Range(thisEnemy.leftHand.damageRange.x, thisEnemy.leftHand.damageRange.y), thisEnemy.leftHand.knockback, this.gameObject);
                 }
             }
 
