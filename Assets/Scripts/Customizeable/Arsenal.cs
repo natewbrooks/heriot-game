@@ -12,8 +12,7 @@ public class Arsenal : MonoBehaviour {
     private void Start() {
         activeLeft = leftWeapons[0];
         activeRight = rightWeapons[0];
-        Debug.Log(activeLeft.name);
-        Debug.Log(activeRight.name);
+
     }
 
     private void Update() {

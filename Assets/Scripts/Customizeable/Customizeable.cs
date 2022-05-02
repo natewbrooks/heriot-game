@@ -24,8 +24,9 @@ public class Customizeable : MonoBehaviour
         animator = GetComponent<Animator>();
         animatorOverride = new AnimatorOverrideController(animator.runtimeAnimatorController);
 
-        hair = hairStyles[0];
-        Swap(hairStyles, "Curly Hair");
+        Swap(hairStyles, PlayerInfo.hair);
+        Swap(beardStyles, PlayerInfo.beard);
+
 
     }
 

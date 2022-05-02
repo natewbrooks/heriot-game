@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
     private Animator animator;
     private Health health;
     private Player player;
-    private Equipment equipment;
+    private Toolbar toolbar;
     private Arsenal arsenal;
 
     private Vector2 movement;
@@ -21,7 +22,7 @@ public class PlayerController : MonoBehaviour
         animator = transform.GetChild(0).GetComponent<Animator>();
         health = GetComponent<Health>();
         player = GetComponent<Player>();
-        equipment = GetComponent<Equipment>();
+        toolbar = GetComponent<Toolbar>();
         arsenal = GetComponent<Arsenal>();
         
         speed = walkSpeed;
@@ -37,33 +38,30 @@ public class PlayerController : MonoBehaviour
                 isRunning = false;
             }
 
-            if(Input.GetKeyDown(KeyCode.LeftAlt)) {
-                animator.SetTrigger("Roll");
-            }
 
             // attacking
             if(Time.time >= nextAttackTime && canHit) {
-                if(Input.GetMouseButtonDown(0)) {
+                if(Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject()) {
                     animator.SetTrigger("Sword Attack");
                     nextAttackTime = Time.time + 1f / attackRate;
                 }
             }
 
             // blocking
-            if(Input.GetMouseButton(1) && (arsenal.activeLeft is ShieldData)) {
-                isBlocking = true;
-                health.TakeKnockback = false;
-                health.Immune = true;
-                canHit = false;
-                transform.GetChild(0).GetChild(1).gameObject.SetActive(true); // temporary shield, need to make animation like sword
-                isRunning = false;
-            } else {
-                isBlocking = false;
-                health.TakeKnockback = true;
-                health.Immune = false;
-                canHit = true;
-                transform.GetChild(0).GetChild(1).gameObject.SetActive(false);
-            }
+            // if(Input.GetMouseButton(1) && (arsenal.activeLeft is ShieldData)) {
+            //     isBlocking = true;
+            //     health.TakeKnockback = false;
+            //     health.Immune = true;
+            //     canHit = false;
+            //     transform.GetChild(0).GetChild(1).gameObject.SetActive(true); // temporary shield, need to make animation like sword
+            //     isRunning = false;
+            // } else {
+            //     isBlocking = false;
+            //     health.TakeKnockback = true;
+            //     health.Immune = false;
+            //     canHit = true;
+            //     transform.GetChild(0).GetChild(1).gameObject.SetActive(false);
+            // }
             
             AnimationHandler();
         }

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5afea24e29e42f4abc73ff2f484c918, type: 3}
   m_Name: Carrot
   m_EditorClassIdentifier: 
-  name: Carrot
+  itemName: Carrot
+  itemSprite: {fileID: 21300000, guid: cbd5be6f4ee0159499ab7bf5ed54192e, type: 3}
   water: 15
   matureTimeSeconds: 5
   stageSprites:

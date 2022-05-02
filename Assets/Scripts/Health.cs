@@ -22,16 +22,15 @@ public class Health : MonoBehaviour
     public bool Immune { get { return _immune; } set { _immune = value; } }
 
     private void Start() {
-        healthbar = transform.GetChild(1).gameObject;
+        healthbar = transform.Find("Healthbar").gameObject;
         _vigor = _maxVigor;
     }
+    
     void Update() {
-        if(_vigor <= 0) {
+        if(_vigor <= 0 && deathCall == false) {
             // send death call only once
-            if(!deathCall) {    
-                gameObject.SendMessage("OnDeath");
-                deathCall = true;
-            }
+            deathCall = true;
+            gameObject.SendMessage("OnDeath");
         }
 
         if(healthbar != null && justHit) {
@@ -44,6 +43,7 @@ public class Health : MonoBehaviour
             
         }
     }
+
     public void TakeDamage(float dmg, float knockback = 1, GameObject dealer = null) {
         //Debug.Log("New Health: " + vigor + " - " + (int)dmg + " = " + (vigor-(int)dmg));
         if(!_immune) {
@@ -61,8 +61,8 @@ public class Health : MonoBehaviour
         }
         
     }
-    IEnumerator Knockback(float knockbackPower, GameObject dealer) {
 
+    IEnumerator Knockback(float knockbackPower, GameObject dealer) {
         Vector2 difference = (Vector2)transform.position - (Vector2)dealer.transform.position;
         difference = difference.normalized * knockbackPower;
         
@@ -77,5 +77,10 @@ public class Health : MonoBehaviour
     void TurnOffHealthbar() {
         healthbar.SetActive(false);
         stopInvokeCalled = false;
+    }
+
+    public void ResetHealth() {
+        _vigor = _maxVigor;
+        deathCall = false;
     }
 }

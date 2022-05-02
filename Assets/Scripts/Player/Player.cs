@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
         health = GetComponent<Health>();
         controller = GetComponent<PlayerController>();
         animator = transform.GetComponentInChildren<Animator>();
+
     }
 
     private void TakeHit() {

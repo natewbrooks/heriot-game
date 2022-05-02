@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Bronze Claymore
   m_EditorClassIdentifier: 
   itemName: Bronze Claymore
+  itemSprite: {fileID: 21300000, guid: 5c80977d7b3ea074199b3b52689695b4, type: 3}
   type: 1
   damageRange: {x: 15, y: 25}
   knockback: 8

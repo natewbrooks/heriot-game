@@ -6,4 +6,5 @@ using UnityEngine;
 public class ItemData : ScriptableObject {
     [Header("Information")]
     public string itemName;
+    public Sprite itemSprite;
 }

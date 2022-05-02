@@ -8,6 +8,7 @@ public class DayNightSystem : MonoBehaviour
     [Header("Controllers")]
     
     public Light2D globalLight; // global light
+
     public float cycleCurrentTime = 0; // current cycle time
     public float cycleMaxTime = 60; // duration of cycle
     public DayCycles dayCycle = DayCycles.Sunrise; // default cycle
@@ -53,23 +54,25 @@ public class DayNightSystem : MonoBehaviour
         }
 
         // Mid Day state
-        if(dayCycle == DayCycles.Day)
+        if(dayCycle == DayCycles.Day) {
             globalLight.color = Color.Lerp(day, sunset, percent);
+        }
 
         // Sunset state
-        if(dayCycle == DayCycles.Sunset)
+        if(dayCycle == DayCycles.Sunset) {
             globalLight.color = Color.Lerp(sunset, night, percent);
+        }
 
         // Night state
-        if(dayCycle == DayCycles.Night)
-        {
+        if(dayCycle == DayCycles.Night) {
             ControlLightMaps(true); // enable map lights (disable only in day states)
             globalLight.color = Color.Lerp(night, midnight, percent);        
         }
 
         // Midnight state
-        if(dayCycle == DayCycles.Midnight)
+        if(dayCycle == DayCycles.Midnight) {
             globalLight.color = Color.Lerp(midnight, day, percent);     
+        }
      }
 
      void ControlLightMaps(bool status)

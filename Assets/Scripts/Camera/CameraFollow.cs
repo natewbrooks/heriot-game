@@ -10,10 +10,32 @@ public class CameraFollow : MonoBehaviour
     private Vector3 velocity = Vector3.zero;
     [SerializeField] private Transform target;
 
+    public int maxCameraDistance = 24;
+    public int minCameraDistance = 10;
+
+    private UnityEngine.Experimental.Rendering.Universal.PixelPerfectCamera ppc;
+
     // Start is called before the first frame update
     void Start()
     {
         cam = GetComponent<Camera>();
+        target = GameObject.Find("Player").transform;
+        
+        ppc = GetComponent<UnityEngine.Experimental.Rendering.Universal.PixelPerfectCamera>();
+        ppc.assetsPPU = PlayerInfo.cameraDistance;
+
+    }
+
+    void Update() {
+        if(Input.GetKeyDown(KeyCode.Equals) && PlayerInfo.cameraDistance < maxCameraDistance) {
+            PlayerInfo.cameraDistance+=2;
+            ppc.assetsPPU = PlayerInfo.cameraDistance;
+        }
+
+        if(Input.GetKeyDown(KeyCode.Minus) && PlayerInfo.cameraDistance > minCameraDistance) {
+            PlayerInfo.cameraDistance-=2;
+            ppc.assetsPPU = PlayerInfo.cameraDistance;
+        }
     }
 
     // Update is called once per frame
